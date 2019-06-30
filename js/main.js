@@ -144,24 +144,20 @@ createRestaurantHTML = (restaurant) => {
 
 	const image = document.createElement('img');
 	image.className = 'restaurant-img';
-	image.alt = `Restaurant Image ${restaurant.name}`;
+	image.alt = `${restaurant.alt}`;
 	image.src = DBHelper.imageUrlForRestaurant(restaurant);
-	image.tabIndex = 0;
 	li.append(image);
 
-	const name = document.createElement('h1');
+	const name = document.createElement('h3');
 	name.innerHTML = restaurant.name;
-	name.tabIndex = 0;
 	li.append(name);
 
 	const neighborhood = document.createElement('p');
 	neighborhood.innerHTML = restaurant.neighborhood;
-	neighborhood.tabIndex = 0;
 	li.append(neighborhood);
 
 	const address = document.createElement('p');
 	address.innerHTML = restaurant.address;
-	address.tabIndex = 0;
 	li.append(address);
 
 	const more = document.createElement('a');
@@ -187,25 +183,3 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 		self.markers.push(marker);
 	});
 };
-
-// Initialing Service worker
-if ('serviceWorker' in navigator) {
-	navigator.serviceWorker
-		.register('./sw.js')
-		.then((reg) => {
-			// worked
-			if (reg.installing) {
-				console.log('installing');
-			} else if (reg.waiting) {
-				console.log('waitign');
-			} else if (reg.active) {
-				console.log('active');
-			}
-
-			console.log('succeded', reg.scope);
-		})
-		.catch((error) => {
-			// failed
-			console.log('error', error);
-		});
-}
