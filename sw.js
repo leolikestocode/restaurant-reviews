@@ -1,5 +1,7 @@
+// Setting the version of the cache
 let staticCacheVersion = 'rastaurant-cache1';
 
+// Setting all the urls fetched to cache
 let urlToCache = [
 	'./',
 	'./index.html',
@@ -22,6 +24,7 @@ let urlToCache = [
 	'./img/10.jpg'
 ];
 
+// Installing service worker
 self.addEventListener('install', function(event){
 	event.waitUntil(
 		caches
@@ -36,6 +39,7 @@ self.addEventListener('install', function(event){
 	);
 });
 
+// Activating service worker
 self.addEventListener('activate', function(event){
 	event.waitUntil(
 		caches.keys().then(function(cacheNames){
@@ -52,6 +56,7 @@ self.addEventListener('activate', function(event){
 	);
 });
 
+// Returning data cached
 self.addEventListener('fetch', function(event){
 	event.respondWith(
 		caches.match(event.request).then(function(response){
