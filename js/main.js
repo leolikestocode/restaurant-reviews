@@ -30,14 +30,13 @@ fetchNeighborhoods = () => {
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
 	const select = document.getElementById('neighborhoods-select');
-	let counter = 1;
 	neighborhoods.forEach((neighborhood) => {
 		const option = document.createElement('option');
 		option.innerHTML = neighborhood;
 		option.value = neighborhood;
-		option.tabIndex = counter;
+		option.label = neighborhood;
+		option.tabIndex = 0;
 		select.append(option);
-		counter++;
 	});
 };
 
@@ -61,14 +60,13 @@ fetchCuisines = () => {
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
 	const select = document.getElementById('cuisines-select');
-	let counter = 5;
 	cuisines.forEach((cuisine) => {
 		const option = document.createElement('option');
 		option.innerHTML = cuisine;
 		option.value = cuisine;
-		option.tabIndex = counter;
+		option.label = cuisine;
+		option.tabIndex = 0;
 		select.append(option);
-		counter++;
 	});
 };
 
@@ -132,10 +130,8 @@ resetRestaurants = (restaurants) => {
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
 	const ul = document.getElementById('restaurants-list');
-	let counter = 15;
 	restaurants.forEach((restaurant) => {
-		ul.append(createRestaurantHTML(restaurant, counter));
-		counter += 5;
+		ul.append(createRestaurantHTML(restaurant));
 	});
 	addMarkersToMap();
 };
@@ -143,36 +139,36 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 /**
  * Create restaurant HTML.
  */
-createRestaurantHTML = (restaurant, counter) => {
+createRestaurantHTML = (restaurant) => {
 	const li = document.createElement('li');
 
 	const image = document.createElement('img');
 	image.className = 'restaurant-img';
 	image.alt = `Restaurant Image ${restaurant.name}`;
 	image.src = DBHelper.imageUrlForRestaurant(restaurant);
-	image.tabIndex = 1 + counter;
+	image.tabIndex = 0;
 	li.append(image);
 
 	const name = document.createElement('h1');
 	name.innerHTML = restaurant.name;
-	name.tabIndex = 2 + counter;
+	name.tabIndex = 0;
 	li.append(name);
 
 	const neighborhood = document.createElement('p');
 	neighborhood.innerHTML = restaurant.neighborhood;
-	neighborhood.tabIndex = 3 + counter;
+	neighborhood.tabIndex = 0;
 	li.append(neighborhood);
 
 	const address = document.createElement('p');
 	address.innerHTML = restaurant.address;
-	address.tabIndex = 4 + counter;
+	address.tabIndex = 0;
 	li.append(address);
 
 	const more = document.createElement('a');
 	more.innerHTML = 'View Details';
 	more.href = DBHelper.urlForRestaurant(restaurant);
 	more.title = `Restaurant anchor View Details`;
-	more.tabIndex = 5 + counter;
+	more.tabIndex = 0;
 	li.append(more);
 
 	return li;
@@ -191,3 +187,25 @@ addMarkersToMap = (restaurants = self.restaurants) => {
 		self.markers.push(marker);
 	});
 };
+
+// Service worker
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker
+		.register('./sw.js')
+		.then((reg) => {
+			// worked
+			if (reg.installing) {
+				console.log('installing');
+			} else if (reg.waiting) {
+				console.log('waitign');
+			} else if (reg.active) {
+				console.log('active');
+			}
+
+			console.log('succeded', reg.scope);
+		})
+		.catch((error) => {
+			// failed
+			console.log('error', error);
+		});
+}

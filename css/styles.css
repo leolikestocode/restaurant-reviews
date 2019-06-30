@@ -168,6 +168,12 @@ nav h1 a {
 	width: 200px;
 }
 
+@media (max-width: 767px) {
+	.filter-options label {
+		display: none;
+	}
+}
+
 @media (max-width: 425px) {
 	.filter-options {
 		flex-wrap: wrap;

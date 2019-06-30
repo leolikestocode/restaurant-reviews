@@ -13,13 +13,13 @@
 
 <body class="inside">
   <!-- Beginning header -->
-  <header>
+  <header tabindex="0">
     <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" >
+    <ul id="breadcrumb" tabindex="0">
       <li><a href="/">Home</a></li>
     </ul>
     <!-- End breadcrumb -->
@@ -28,14 +28,14 @@
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent">
+  <main id="maincontent" tabindex="0">
     <!-- Beginning map -->
-    <section id="map-container">
+    <section id="map-container" aria-role="map area" tabindex="0">
       <div id="map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <section id="restaurant-container" aria-role="map area" tabindex="0">
       <h1 id="restaurant-name"></h1>
       <img id="restaurant-img">
       <p id="restaurant-cuisine"></p>
@@ -57,8 +57,6 @@
   </footer>
   <!-- End footer -->
 
-
-  <script type="application/javascript" src='./js/serviceworker.js'></script>
   <!-- Beginning scripts -->
   <!-- Database helpers -->
 
@@ -66,8 +64,7 @@
   <!-- Main javascript file -->
   <script type="text/javascript" src="js/restaurant_info.js"></script>
   <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL4WByT_vcW1mHWjt2vRnr8ZQtolkimDo&libraries=places&callback=initMap"></script>
-  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_tKbW6A5pQ-eupxI56myUnHLqYCzOjKo&libraries=places&callback=initMap"></script> -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP_JwBiUa0-NAvGzAzdC6wkQSVOReXDcE&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
 
 </body>
