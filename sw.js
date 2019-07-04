@@ -1,52 +1,36 @@
-// Setting the version of the cache
-let staticCacheVersion = 'rastaurant-cache1';
-
-// Setting all the urls fetched to cache
-let urlToCache = [
-	'./',
-	'./index.html',
-	'./restaurant.html',
-	'./css/styles.css',
-	'./data/restaurants.json',
-	'./js/dbhelper.js',
-	'./js/main.js',
-	'./js/restaurant_info.js',
-	'./js/sw_register.js',
-	'./img/1.jpg',
-	'./img/2.jpg',
-	'./img/3.jpg',
-	'./img/4.jpg',
-	'./img/5.jpg',
-	'./img/6.jpg',
-	'./img/7.jpg',
-	'./img/8.jpg',
-	'./img/9.jpg',
-	'./img/10.jpg'
-];
-
-// Installing service worker
-self.addEventListener('install', function(event){
+this.addEventListener('install', function(event){
 	event.waitUntil(
-		caches
-			.open(staticCacheVersion)
-			.then(function(cache){
-				console.log('cache installed:', cache);
-				return cache.addAll(urlToCache);
-			})
-			.catch((err) => {
-				console.log('err:', err);
-			})
+		caches.open('restaurantMap').then(function(cache){
+			return cache.addAll([
+				'/',
+				'index.html',
+				'restaurant.html',
+				'css/styles.css',
+				'js/dbhelper.js',
+				'js/main.js',
+				'js/restaurant_info.js',
+				'img/1.jpg',
+				'img/2.jpg',
+				'img/3.jpg',
+				'img/4.jpg',
+				'img/5.jpg',
+				'img/6.jpg',
+				'img/7.jpg',
+				'img/8.jpg',
+				'img/9.jpg',
+				'img/10.jpg'
+			]);
+		})
 	);
 });
 
-// Activating service worker
-self.addEventListener('activate', function(event){
+this.addEventListener('activate', function(event){
 	event.waitUntil(
 		caches.keys().then(function(cacheNames){
 			return Promise.all(
 				cacheNames
 					.filter(function(cacheName){
-						return cacheName.startsWith('restaurant-') && cacheName != staticCacheVersion;
+						return cacheName === 'restaurantMap';
 					})
 					.map(function(cacheName){
 						return caches.delete(cacheName);
@@ -56,8 +40,7 @@ self.addEventListener('activate', function(event){
 	);
 });
 
-// Returning data cached
-self.addEventListener('fetch', function(event){
+this.addEventListener('fetch', (event) => {
 	event.respondWith(
 		caches.match(event.request, { ignoreSearch: true }).then(function(response){
 			return response || fetch(event.request);
