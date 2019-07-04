@@ -13,31 +13,33 @@
 
 <body class="inside">
   <!-- Beginning header -->
-  <header tabindex="0">
+  <header>
     <!-- Beginning nav -->
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
-    </nav>
+    <div class='top'>
+      <h3><a href="/">Restaurants</a></h3>
+    </div>
     <!-- Beginning breadcrumb -->
-    <ul id="breadcrumb" tabindex="0">
-      <li><a href="/">Home</a></li>
-    </ul>
+    <nav aria-label="Breadcrumb">
+      <ul id="breadcrumb" >
+        <li><a href="/" tabindex="0">Home</a></li>
+      </ul>
+    </nav>
     <!-- End breadcrumb -->
     <!-- End nav -->
   </header>
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent" tabindex="0">
+  <main id="maincontent">
     <!-- Beginning map -->
-    <section id="map-container" aria-role="map area" tabindex="0">
-      <div id="map"></div>
+    <section id="map-container" aria-role="map area">
+      <div  id="map" aria-label="location" role="application"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container" aria-role="map area" tabindex="0">
-      <h1 id="restaurant-name"></h1>
-      <img id="restaurant-img">
+    <section id="restaurant-container" aria-role="restaurant area">
+      <h3 id="restaurant-name"></h3>
+      <img id="restaurant-img" alt="restaurant image">
       <p id="restaurant-cuisine"></p>
       <p id="restaurant-address"></p>
       <table id="restaurant-hours"></table>
@@ -62,6 +64,7 @@
 
   <script type="text/javascript" src="js/dbhelper.js"></script>
   <!-- Main javascript file -->
+  <script type="application/javascript" src="js/sw_register.js"></script>
   <script type="text/javascript" src="js/restaurant_info.js"></script>
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP_JwBiUa0-NAvGzAzdC6wkQSVOReXDcE&libraries=places&callback=initMap"></script>

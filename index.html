@@ -10,17 +10,17 @@
 </head>
 
 <body>
-  <header tabindex="0">
-    <nav>
-      <h1><a href="/">Restaurant Reviews</a></h1>
+  <header>
+    <nav class='top'>
+      <h1><a href="/" aria-current="page">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
-  <main id="maincontent" tabindex="0">
-    <section id="map-container" tabindex="0">
-      <div id="map"></div>
+  <main id="maincontent">
+    <section id="map-container">
+      <div  id="map" aria-label="location" role="application"></div>
     </section>
-    <section tabindex="0">
+    <section>
       <div class="filter-options">
         <h2>Filter Results</h2>
         <label for="neighborhoods-select">filter neighborhood</label>
@@ -41,6 +41,7 @@
   </footer>
 
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
+  <script type="application/javascript" src="js/sw_register.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDP_JwBiUa0-NAvGzAzdC6wkQSVOReXDcE&libraries=places&callback=initMap"></script>
 
